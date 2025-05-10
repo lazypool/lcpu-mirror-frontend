@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 全局配置
-MIRROR_URL=${MIRROR_URL:-"https://mirrors.lcpu.dev"}
+MIRROR_URL=${MIRROR_URL:-"mirrors.lcpu.dev"}
 declare -g ZH_MODE=0
 declare -g INTERACTIVE=0
 

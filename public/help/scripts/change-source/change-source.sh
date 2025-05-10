@@ -8,21 +8,20 @@ dispatch() {
 	case $ID in
 		ubuntu)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
-			if [ $major_ver -ge 24 ]; then
-				script_path="$(dirname "$0")/distros/ubuntu24.sh"
-			else
-				script_path="$(dirname "$0")/distros/ubuntu22.sh"
-			fi
-			;;
+			[ $major_ver -ge 24 ] && script_path="distros/ubuntu24.sh" || script_path="distros/ubuntu.sh"
+		;;
+		rocky | debian | arch)
+			script_path="distros/${ID}.sh"
+		;;
 		*)
-			script_path="$(dirname "$0")/distros/${ID}.sh"
-			;;
+			error_exit "不支持的系统：${ID}" "Unsupported distribution: ${ID}"
+		;;
 	esac
 	if [ -f "$script_path" ]; then
 		msg "检测到 ${PRETTY_NAME}" "Detected ${PRETTY_NAME}"
 		source "$script_path"
 	else
-		error_exit "不支持的系统：${ID}" "Unsupported distribution: ${ID}"
+		error_exit "找不到发行版脚本：${script_path}" "Missing distribution script: ${script_path}"
 	fi
 }
 

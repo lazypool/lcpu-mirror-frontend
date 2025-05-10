@@ -15,7 +15,7 @@ execute() {
 	if [ $INTERACTIVE -eq 1 ]; then
 		confirm "应用镜像配置？" "Apply mirror configuration?" || return
 	fi
-	sed -i 's@//.*archive.ubuntu.com@//mirrors.pku.edu.cn@g' "$TARGET_FILE"
+	sed -i "s@//.*archive.ubuntu.com@//${MIRROR_URL}@g" "$TARGET_FILE"
 	if apt-get update -yqq >/dev/null 2>&1; then
 		msg "镜像源更换成功！" "Mirror changed successfully!"
 	else
