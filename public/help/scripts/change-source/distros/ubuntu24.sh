@@ -7,7 +7,7 @@ prepare() {
 }
 
 execute() {
-	msg "开始更换北大镜像源（24.04+）..." "Changing to PKU mirror for 24.04+..."
+	msg "开始更换北大镜像源（Ubuntu 24.04+）..." "Changing to PKU mirror for Ubuntu 24.04+..."
 	if [ $INTERACTIVE -eq 1 ]; then
 		confirm "备份原始文件？" "Backup original sources?" || return
 	fi

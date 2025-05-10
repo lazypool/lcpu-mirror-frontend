@@ -12,7 +12,7 @@ prepare() {
 }
 
 execute() {
-	msg "开始更换北大镜像源（Rocky Linux）..." "Changing to PKU mirror for Rocky Linux..."
+	msg "开始更换北大镜像源（Rocky Linux 8）..." "Changing to PKU mirror for Rocky Linux 8..."
 	if [ $INTERACTIVE -eq 1 ]; then
 		confirm "备份原始文件？" "Backup original sources?" || return
 	fi
