@@ -2,7 +2,7 @@
 source "$(dirname "$0")/../common.sh"
 
 prepare() {
-	REPO_FILES=(
+	TARGET_FILES=(
 		"/etc/yum.repos.d/Rocky-AppStream.repo"
     "/etc/yum.repos.d/Rocky-BaseOS.repo"
     "/etc/yum.repos.d/Rocky-Extras.repo"
@@ -18,11 +18,11 @@ execute() {
 	fi
 	mkdir -p "$BACKUP_DIR"
 	msg "备份配置文件中..." "Backing up repository files..."
-	cp -f "${REPO_FILES[@]}" "$BACKUP_DIR"
+	cp -f "${TARGET_FILES[@]}" "$BACKUP_DIR"
 	if [ $INTERACTIVE -eq 1 ]; then
 		confirm "应用镜像配置？" "Apply mirror configuration?" || return
 	fi
-	for file in "${REPO_FILES[@]}"; do
+	for file in "${TARGET_FILES[@]}"; do
 		sed -i -e 's|^mirrorlist=|#mirrorlist=|g' \
 			  -e "s|^#baseurl=http://dl.rockylinux.org|baseurl=https://${MIRROR_URL}|g" \
 			  "$file"
