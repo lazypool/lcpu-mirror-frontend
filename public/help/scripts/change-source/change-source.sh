@@ -72,9 +72,9 @@ dispatch() {
 		ubuntu)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
 			if [ $major_ver -ge 24 ]; then
-				script_path="distros/ubuntu24.sh"
+				script_path="${TMP_DIR}/distros/ubuntu24.sh"
 			elif [ $major_ver -ge 22 || $major_ver -ge 20 ]; then
-				script_path="distros/ubuntu.sh"
+				script_path="${TMP_DIR}/distros/ubuntu.sh"
 			else
 				error_exit "不支持的 Ubuntu 版本：${VERSION_ID}" "Unsupported Ubuntu version: ${VERSION_ID}"
 			fi
@@ -82,9 +82,9 @@ dispatch() {
 		rocky)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
 			if [ $major_ver -eq 8 ]; then
-				script_path="distros/rocky8.sh"
+				script_path="${TMP_DIR}/distros/rocky8.sh"
 			elif [ $major_ver -eq 9 ]; then
-				script_path="distros/rocky9.sh"
+				script_path="${TMP_DIR}/distros/rocky9.sh"
 			else
 				error_exit "不支持的 Rocky Linux 版本：${VERSION_ID}" "Unsupported Rocky Linux version: ${VERSION_ID}"
 			fi
@@ -92,15 +92,15 @@ dispatch() {
 		debian)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
 			if [ $major_ver -eq 12 ]; then
-				script_path="distros/debian12.sh"
+				script_path="${TMP_DIR}/distros/debian12.sh"
 			elif [ $major_ver -eq 11 ]; then
-				script_path="distros/debian11.sh"
+				script_path="${TMP_DIR}/distros/debian11.sh"
 			else
 				error_exit "不支持的 Debian 版本：${VERSION_ID}" "Unsupported Debian version: ${VERSION_ID}"
 			fi
 		;;
 		arch)
-			script_path="distros/${ID}.sh"
+			script_path="${TMP_DIR}/distros/${ID}.sh"
 		;;
 		*)
 			error_exit "不支持的系统：${ID}" "Unsupported distribution: ${ID}"
