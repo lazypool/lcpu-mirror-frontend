@@ -1,5 +1,4 @@
 #!/bin/bash
-source "$(dirname "$0")/../common.sh"
 
 prepare() {
 	BACKUP_FILE="/etc/apt/sources.list.bak"

@@ -1,5 +1,4 @@
 #!/bin/bash
-source "$(dirname "$0")/../common.sh"
 
 prepare() {
 	BACKUP_FILE="/etc/pacman.d/mirrorlist.bak"
@@ -23,3 +22,6 @@ execute() {
 		error_exit "换源失败，已恢复原配置" "Mirror change failed, restored original configuration"
 	fi
 }
+
+prepare
+execute
