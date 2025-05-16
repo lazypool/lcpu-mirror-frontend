@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$(dirname "$0")/common.sh"
+source "$(pwd)/common.sh"
 
 # 分发到对应的发行版脚本
 dispatch() {
@@ -8,7 +8,6 @@ dispatch() {
 	case $ID in
 		ubuntu)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
-			[] &&  || script_path="distros/ubuntu.sh"
 			if [ $major_ver -ge 24 ]; then
 				script_path="distros/ubuntu24.sh"
 			elif [ $major_ver -ge 22 || $major_ver -ge 20 ]; then
@@ -30,7 +29,9 @@ dispatch() {
 		debian)
 			major_ver=$(echo $VERSION_ID | cut -d. -f1)
 			if [ $major_ver -eq 12 ]; then
+				script_path="distros/debian12.sh"
 			elif [ $major_ver -eq 11 ]; then
+				script_path="distros/debian11.sh"
 			else
 				error_exit "不支持的 Debian 版本：${VERSION_ID}" "Unsupported Debian version: ${VERSION_ID}"
 			fi
